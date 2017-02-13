@@ -1,11 +1,22 @@
-import { connect } from 'react-redux';
-import Station from '../components/Stations';
+import {connect} from 'react-redux';
+import Stations from '../components/Stations';
 
-let mapStateToProps = (state) => ({
 
+
+const convertSongsToStations = function(songs){
+    const stations = {};
+    songs.forEach(song => {
+        const genre = song.genre;
+        stations[genre] = stations[genre] || [];
+        stations[genre].push(song);
+    })
+    return stations;
+};
+
+let mapStateToProps = (state, ownProps) => ({
+    stations: convertSongsToStations(state.songs)
 });
-let mapDispatchToProps = (dispatch) => ({
 
-});
+let mapDispatchToProps = (dispatch, ownProps) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Station);
+export default connect(mapStateToProps, mapDispatchToProps)(Stations);

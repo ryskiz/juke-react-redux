@@ -13,12 +13,11 @@ const Stations = (props) => {
           <h3>Stations</h3>
           <div className="list-group">
               {
-                  DUMMY_STATIONS_DATA.map(station => {
-                      return (
-                          <div className="list-group-item" key={station.name}>
-                              <Link to={'fill/me/in/later'}>{station.name}</Link>
-                          </div>
-                      );
+                  props.stations && Object.keys(props.stations).map((genre) => {
+                      console.log(genre);
+                      return (<div className="list-group-item" key={genre}>
+                          <Link to={`/stations/${genre}`}>{genre}</Link>
+                      </div>)
                   })
               }
           </div>
